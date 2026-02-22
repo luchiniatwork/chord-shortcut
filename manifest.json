@@ -1,0 +1,35 @@
+{
+  "manifest_version": 3,
+  "name": "Chord Shortcut",
+  "version": "1.0.0",
+  "description": "Emacs-style chord shortcuts to navigate URL templates. Press the activation key, then a letter, enter an ID, and go.",
+  "permissions": ["activeTab", "scripting", "storage", "tabs"],
+  "background": {
+    "service_worker": "background.js"
+  },
+  "content_scripts": [
+    {
+      "matches": ["<all_urls>"],
+      "js": ["content.js"],
+      "run_at": "document_idle"
+    }
+  ],
+  "options_ui": {
+    "page": "options.html",
+    "open_in_tab": true
+  },
+  "commands": {
+    "activate-chord": {
+      "suggested_key": {
+        "default": "Ctrl+Shift+L",
+        "mac": "Command+Shift+L"
+      },
+      "description": "Activate chord mode to trigger a URL shortcut"
+    }
+  },
+  "icons": {
+    "16": "icons/icon16.png",
+    "48": "icons/icon48.png",
+    "128": "icons/icon128.png"
+  }
+}
